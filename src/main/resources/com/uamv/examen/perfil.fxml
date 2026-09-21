@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.PerfilController"
+      spacing="10">
+
+    <ToolBar>
+        <Button text="Cargar imagen" onAction="#cargarImagen"/>
+        <Separator/>
+        <Button text="Mostrar" onAction="#mostrarPerfil"/>
+    </ToolBar>
+
+    <TextField fx:id="txtNombre"
+               promptText="Nombre del estudiante"/>
+
+    <RadioButton fx:id="rbEstudiante"
+                 text="Estudiante"/>
+
+    <RadioButton fx:id="rbDocente"
+                 text="Docente"/>
+
+    <CheckBox fx:id="chkJava" text="Java"/>
+    <CheckBox fx:id="chkJavaFX" text="JavaFX"/>
+    <CheckBox fx:id="chkSpring" text="Spring Boot"/>
+
+    <ImageView fx:id="imagen"
+                fitWidth="150"
+                fitHeight="150"/>
+
+</VBox>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.ProyectoController"
+      spacing="8">
+
+    <ToolBar>
+        <Button text="Imagen" onAction="#seleccionarImagen"/>
+        <Button text="Registrar" onAction="#registrar"/>
+    </ToolBar>
+
+    <TextField fx:id="txtProyecto"
+               promptText="Nombre del proyecto"/>
+
+    <Label text="Tipo de proyecto"/>
+
+    <RadioButton fx:id="rbWeb"
+                 text="Aplicación Web"/>
+
+    <RadioButton fx:id="rbMovil"
+                 text="Aplicación Móvil"/>
+
+    <CheckBox fx:id="chkJava" text="Java"/>
+    <CheckBox fx:id="chkReact" text="React"/>
+    <CheckBox fx:id="chkPostgres" text="PostgreSQL"/>
+
+    <ImageView fx:id="imgProyecto"
+                fitWidth="180"
+                fitHeight="120"/>
+
+</VBox>
