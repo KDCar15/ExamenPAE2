@@ -1,4 +1,4 @@
-package com.example;
+package com.uamv.examen;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

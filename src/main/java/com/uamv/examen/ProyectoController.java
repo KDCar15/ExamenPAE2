@@ -1,6 +1,7 @@
-package com.example;
+package com.uamv.examen;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,10 +9,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProyectoController {
-
+public class ProyectoController implements Initializable
+{
     @FXML private TextField txtProyecto;
+
+    @FXML private ToggleGroup tgTipoProyecto;
     @FXML private RadioButton rbWeb;
     @FXML private RadioButton rbMovil;
 
@@ -22,11 +27,11 @@ public class ProyectoController {
     @FXML private ImageView imgProyecto;
 
     @FXML
-    private void seleccionarImagen() {
-
+    private void seleccionarImagen()
+    {
         FileChooser fc = new FileChooser();
 
-        File archivo = fc.showSaveDialog(
+        File archivo = fc.showOpenDialog(
                 (Stage) imgProyecto.getScene().getWindow()
         );
 
@@ -39,14 +44,28 @@ public class ProyectoController {
 
     @FXML
     private void registrar() {
+        if(txtProyecto.getText().isEmpty()){
+            Alert error = new Alert(Alert.AlertType.INFORMATION);
+            error.setContentText(
+                    "Debe introducir un nombre del proyecto"
+            );
+            error.show();
+            return;
+        }
 
-        ToggleGroup grupo = new ToggleGroup();
-
-        rbWeb.setToggleGroup(grupo);
-        rbMovil.setToggleGroup(grupo);
-
-        RadioButton tipo =
-                (RadioButton) grupo.getSelectedToggle();
+        RadioButton tipo;
+        if(tgTipoProyecto.getSelectedToggle() != null) {
+            tipo =
+                    (RadioButton) tgTipoProyecto.getSelectedToggle();
+        }
+        else{
+            Alert error = new Alert(Alert.AlertType.INFORMATION);
+            error.setContentText(
+                    "Debe seleccionar un tipo de proyecto"
+            );
+            error.show();
+            return;
+        }
 
         String tecnologias = "";
 
@@ -59,14 +78,35 @@ public class ProyectoController {
         if (chkPostgres.isSelected())
             tecnologias += "PostgreSQL ";
 
+        if (tecnologias.isEmpty())
+        {
+            Alert error = new Alert(Alert.AlertType.INFORMATION);
+            error.setContentText(
+                    "Debe seleccionar al menos una tecnología"
+            );
+            error.show();
+            return;
+        }
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+        alert.setTitle("Información del proyecto");
+        alert.setHeaderText("");
         alert.setContentText(
-                "Proyecto: " + txtProyecto.getText()
-                        + "\nTipo: " + tipo.getText()
+                         "Proyecto" + txtProyecto.getText()
+                        +"\nTipo: " + tipo.getText()
                         + "\nTecnologías: " + tecnologias
         );
 
+        alert.setGraphic(imgProyecto);
+
         alert.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tgTipoProyecto = new ToggleGroup();
+        rbWeb.setToggleGroup(tgTipoProyecto);
+        rbMovil.setToggleGroup(tgTipoProyecto);
     }
 }
