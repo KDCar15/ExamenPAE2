@@ -30,6 +30,7 @@ public class ProyectoController implements Initializable
     private void seleccionarImagen()
     {
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg"));
 
         File archivo = fc.showOpenDialog(
                 (Stage) imgProyecto.getScene().getWindow()
