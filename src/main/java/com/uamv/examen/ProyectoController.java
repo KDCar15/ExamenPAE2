@@ -88,6 +88,15 @@ public class ProyectoController implements Initializable
             return;
         }
 
+        if(imgProyecto.getImage() == null){
+            Alert error = new Alert(Alert.AlertType.INFORMATION);
+            error.setContentText(
+                    "Debe introducir una imagen"
+            );
+            error.show();
+            return;
+        }
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         alert.setTitle("Información del proyecto");
